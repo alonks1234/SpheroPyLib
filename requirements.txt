@@ -1,0 +1,14 @@
+dbus-python
+torch
+numpy
+matplotlib
+soundfile
+opencv-python
+librosa
+torchvision
+tensorboard
+scipy
+pygatt
+gatt
+pyrealsense2
+sounddevice
