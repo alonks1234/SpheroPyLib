@@ -36,7 +36,7 @@ including the ones controlling the robot, get orphaned. I'm sure this is a trivi
 ###"ValueError: No input device matching 'Q9-1'"###
 The microphone is not being recognized by the computer. Try rebooting and unplugging.
 On your host machine, you should be able to open a python script and run:  
-`import sounddevice as sd`
+`import sounddevice as sd`  
 `print (sd.query_devices())`
 
 and see an entry for:  
@@ -44,7 +44,21 @@ and see an entry for:
 
 If not, keep rebooting. Glhf.
 
+### Camera not connected
+```Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/sphero/SpheroLib/camera.py", line 19, in run_camera
+    prof = pipeline.start(cam_config)
+RuntimeError: Couldn't resolve requests
+```
+To fix this, on your host machine open up the realsense-viewer and ensure that the camera is visible (and that
+the connection says usb 3.X, not 2.X).
+
 ###### Bluetooth Connectivity Error
+```
 Traceback (most recent call last):
   File "/usr/local/lib/python3.8/dist-packages/gatt/gatt_linux.py", line 293, in _connect
     self._object.Connect()
@@ -72,7 +86,7 @@ Traceback (most recent call last):
   File "/sphero/SpheroLib/sphero_bluetooth.py", line 110, in connect_failed
     self.log("[%s] Connection failed: %s" % (str(error)))
 TypeError: not enough arguments for format string
-
+```
 This one is likely either:
 * Bluetooth is not on on your host machine.
 * You can't see the spheros. Pull up the bluetooth devices on your host machine.
