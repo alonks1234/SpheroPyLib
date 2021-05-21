@@ -33,7 +33,7 @@ sphero_config = {
     "SPHERO_CHARGED_VOLTAGE": 3.75,
 
     # Security risk. Slack token for publishing charging info to #sphero_slack.
-    "SLACKTOKEN": "xoxp-751333133392-755650516737-851119207014-ccb621bfdf8b543fb9574562157af6c3",
+    "SLACKTOKEN": "hello-world",
 
     # DONT TOUCH THESE
     "SPHERO_SENSOR_RATE": 9,  # hz, Estimate from inspection
