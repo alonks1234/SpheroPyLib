@@ -19,7 +19,7 @@ while True:
         if num_collected == len(os.listdir(dataset_dir)):
             print("Restarting Lib")
             os.killpg(os.getpgid(process.pid), signal.SIGTERM)
-            process = subprocess.Popen(['python', 'gather_random_dataset_sphero.py', dataset_dir],
+            process = subprocess.Popen(['python3.8', 'gather_random_dataset_sphero.py', dataset_dir],
                                        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                        preexec_fn=os.setsid)
         else:

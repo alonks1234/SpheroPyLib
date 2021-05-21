@@ -19,13 +19,41 @@ Plug the realsense and Q9-1 Microphone into host usb ports.
 The microphone can use usb2.0, but the realsense needs usb3.0.
 
 ## Build the docker image
-docker build -t spheroimage:1.0 .
+`docker build -t spheroimage:1.0 .`
+
+## Make a dataset directory
+`mkdir dataset`
 
 ## Run the docker container
-docker run --net=host --privileged --mount type=bind,source=/var/run/dbus/system_bus_socket,target=/var/run/dbus/system_bus_socket -it spheroimage:1.0 
+`docker run --net=host --privileged --mount type=bind,source=/var/run/dbus/system_bus_socket,target=/var/run/dbus/system_bus_socket -it spheroimage:1.0`
 
-## Gather a dataset
-python3.8 collector_manager.py dataset
+## Populate the dataset
+`python3.8 collector_manager.py dataset`  
+This script will add data to the "dataset" folder up to a certain number of samples, specified
+in "gather_random_dataset_sphero.py"
+
+## Sphero Configuration
+In SpheroLib/config is the configuration of the envrironment.
+```
+sphero_config = {
+    "SIMULTANEOUS_SPHEROS": 1,
+    "SPHEROMACS": [
+        "D1:E3:4B:81:F3:29",
+        "DA:E7:C9:C5:81:CD",
+        "E1:91:60:4F:3B:27",
+        "E1:91:60:4F:3B:27", 
+                   ],
+    "SPHEROCOLORASSIGNMENTS": [(255, 0, 0),
+                               (0, 255, 0),
+                               (0, 0, 255),
+                               (255, 255, 255)],
+    # Amount of time to maintain past state for.
+    "STATE_LEN_TIME_SECS": 2,
+    ...
+```
+The library supports multirobot setups, although the current dataset collection script is just commanding one.
+When a Sphero dies, switch the order of the MAC addresses to use a different one (the library uses
+the topmost MAC address/s)
 
 ## Docker Bugs
 The library seems to not shutdown correctly from a ctrl + c from docker. Some processes,
