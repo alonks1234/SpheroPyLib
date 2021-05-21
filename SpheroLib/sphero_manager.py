@@ -24,7 +24,7 @@ class SpheroManager:
         kill_switch = mp.Value('i')
         kill_switch.value = 0
         sphero_proc = mp.Process(target=run_sphero, args=(self.shared_resources, sphero_num, kill_switch))
-        print (sphero_proc.daemon)
+        # print (sphero_proc.daemon)
         sphero_proc.daemon = True
         sphero_proc.start()
         self.process_data[sphero_num]["pid"] = sphero_proc.pid
