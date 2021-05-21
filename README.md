@@ -25,7 +25,7 @@ The microphone can use usb2.0, but the realsense needs usb3.0.
 `mkdir dataset`
 
 ## Run the docker container
-`docker run --net=host --privileged --mount type=bind,source=/var/run/dbus/system_bus_socket,target=/var/run/dbus/system_bus_socket -it spheroimage:1.0`
+`docker run --net=host --privileged --mount type=bind,source=/var/run/dbus/system_bus_socket,target=/var/run/dbus/system_bus_socket  --mount type=bind,source=/<path_to_lib>/SpheroPyLib/dataset,target=/sphero/dataset -it spheroimage:1.0`
 
 ## Populate the dataset
 `python3.8 collector_manager.py dataset`  
