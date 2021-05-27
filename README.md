@@ -1,5 +1,10 @@
 # Sphero Bolt Python Library
 
+## Hardware shopping list
+[Sphero Bolts](https://sphero.com/products/sphero-bolt?gclid=Cj0KCQjwhr2FBhDbARIsACjwLo3H10-o6Z8lu9dzFECRtGmCevp3P28uudN5AAzRudkmL_FjLceJtsYaArOiEALw_wcB)  
+[Realsense D415](https://www.intelrealsense.com/depth-camera-d415/)  
+[Microphone](https://www.amazon.com/TONOR-Microphone-Condenser-Recording-Podcasting/dp/B07JMYG6LF/ref=sr_1_1_sspa?crid=MFJ0JSLWHCJ1&dchild=1&keywords=q9+microphone&qid=1622125439&sprefix=q9+micr%2Caps%2C165&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyR1M5QUVGSFVXNjhaJmVuY3J5cHRlZElkPUEwMzg4Njg3MThFVDZHM0s0OUVKWiZlbmNyeXB0ZWRBZElkPUEwODgxMTg2MU9NMDlMMEg4VFdZQyZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=)
+
 ## Compute requirements
 This should work on Linux 16.04, 18.04, and 20.04. This was tested on 18.04 and 20.04. The docker image 
 pulls from an 18.04 base image.
@@ -52,6 +57,20 @@ sphero_config = {
     ...
 ```
 The library supports multirobot setups, although the current dataset collection script is just commanding one.
+
+To control 2+ robots, simply add their mac addresses and color assignments to the config and set 
+"SIMULTANEOUS_SPHEROS" to the correct number.
+
+In the data collection script, add a line `sphero_lib.set_sphero_action` for each sphero num (first arg)
+that you wish to control
+```
+for elt in range(4):
+    action_start = time.time()
+    sphero_lib.set_sphero_action(0, heading_trajectory[elt], speed_trajectory[elt])
+    # sphero_lib.set_sphero_action(1, heading_trajectory[elt], speed_trajectory[elt])
+    time.sleep(max([.5 - (time.time() - action_start), 0]))
+```
+
 When a Sphero dies, switch the order of the MAC addresses to use a different one (the library uses
 the topmost MAC address/s)
 

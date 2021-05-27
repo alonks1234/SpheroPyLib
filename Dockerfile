@@ -14,4 +14,5 @@ RUN pip3 install -r requirements.txt
 COPY SpheroLib/ ./SpheroLib
 COPY collector_manager.py .
 COPY gather_random_dataset_sphero.py .
+COPY run_collector.sh .
 

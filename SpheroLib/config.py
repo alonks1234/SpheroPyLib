@@ -2,11 +2,11 @@
 Things that are user specified
 """
 sphero_config = {
-    "SIMULTANEOUS_SPHEROS": 1,
+    "SIMULTANEOUS_SPHEROS": 2,
     "SPHEROMACS": [
-        "E1:91:60:4F:3B:27",
-        "D1:E3:4B:81:F3:29",
         "DA:E7:C9:C5:81:CD",
+        "D1:E3:4B:81:F3:29",
+        "E1:91:60:4F:3B:27",
                    ],
     "SPHEROCOLORASSIGNMENTS": [(255, 0, 0),
                                (0, 255, 0),

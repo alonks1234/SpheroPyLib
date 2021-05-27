@@ -45,6 +45,7 @@ if __name__ == "__main__":
         for elt in range(4):
             action_start = time.time()
             sphero_lib.set_sphero_action(0, heading_trajectory[elt], speed_trajectory[elt])
+            sphero_lib.set_sphero_action(1, heading_trajectory[elt], speed_trajectory[elt])
             time.sleep(max([.5 - (time.time() - action_start), 0]))
         [state, _] = sphero_lib.get_sphero_states()
         sphero_lib.set_sphero_action(0, heading_trajectory[-1], 0)
